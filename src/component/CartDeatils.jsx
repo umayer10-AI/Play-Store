@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiLike } from 'react-icons/bi';
 import { FaDownload, FaStar } from 'react-icons/fa';
 import { useLoaderData, useParams } from 'react-router';
+import { Data } from '../Context/Context';
 
 const CartDeatils = () => {
 
     const {id} = useParams()
     const p = useLoaderData()
     const app = p.find(v => v.id === Number(id))
+    const {i,setI} = useContext(Data)
+    const a = () => {
+        const f = i.find(v => v.id === app.id)
+        if(!f){
+            setI(c => [...c,app])
+        }
+    }
 
     return (
         <div className='max-w-[80%] mx-auto'>
@@ -36,7 +44,7 @@ const CartDeatils = () => {
                             <h2 className='text-3xl font-bold'>{app.reviews}</h2>
                         </div>
                     </div>
-                    <button className='btn btn-success text-white font-bold'>Install Now({app.size} MB)</button>
+                    <button onClick={a} className='btn btn-success text-white font-bold'>Install Now({app.size} MB)</button>
                 </div>
             </div>
 
