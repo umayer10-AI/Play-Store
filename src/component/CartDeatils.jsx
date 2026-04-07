@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BiLike } from 'react-icons/bi';
 import { FaDownload, FaStar } from 'react-icons/fa';
 import { useLoaderData, useParams } from 'react-router';
 import { Data } from '../Context/Context';
+import { toast,Bounce } from 'react-toastify';
 
 const CartDeatils = () => {
 
@@ -10,11 +11,37 @@ const CartDeatils = () => {
     const p = useLoaderData()
     const app = p.find(v => v.id === Number(id))
     const {i,setI} = useContext(Data)
+    const [f, setf] = useState(false)
     const a = () => {
         const f = i.find(v => v.id === app.id)
         if(!f){
             setI(c => [...c,app])
+            toast.success('App install successfully', {
+                position: "top-right",
+                autoClose: 499,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
+        else{
+            toast.error('App Already Installed', {
+                position: "top-right",
+                autoClose: 499,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
+        }
+        setf(true)
     }
 
     return (
@@ -44,7 +71,7 @@ const CartDeatils = () => {
                             <h2 className='text-3xl font-bold'>{app.reviews}</h2>
                         </div>
                     </div>
-                    <button onClick={a} className='btn btn-success text-white font-bold'>Install Now({app.size} MB)</button>
+                    <button disabled={f} onClick={a} className='btn btn-success text-white font-bold'>Install Now({app.size} MB)</button>
                 </div>
             </div>
 

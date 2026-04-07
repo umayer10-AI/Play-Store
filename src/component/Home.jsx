@@ -3,7 +3,7 @@ import Banner from './Banner/Banner';
 import B2 from './Banner/B2';
 import { Data } from '../Context/Context';
 import axios from "axios"
-import { FaDownload, FaRegStar } from 'react-icons/fa';
+import { FaArrowRight, FaDownload, FaRegStar } from 'react-icons/fa';
 import { Link } from 'react-router';
 
 const Home = () => {
@@ -35,9 +35,9 @@ const Home = () => {
             <div className='max-w-[80%] mx-auto mt-20 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     cart.slice(0,6).map((v,i) => (
-                        <Link to={`/cartinfo/${v.id}`} key={i} className='border rounded-2xl p-5 space-y-3'>
+                        <Link to={`/cartinfo/${v.id}`} key={i} className='border rounded-2xl group p-5 space-y-3'>
                             <div className='bg-gray-700 flex justify-center rounded-2xl py-4'>
-                                <img src={v.image} className='h-30 rounded-2xl' alt="" />
+                                <img src={v.image} className='h-30 rounded-2xl group-hover:scale-110 transition duration-300' alt="" />
                             </div>
                             <h2 className='font-bold'>{v.title}</h2>
                             <div className='flex justify-between items-center'>
@@ -50,7 +50,7 @@ const Home = () => {
             </div>
 
             <div className='flex justify-center'>
-                <Link to={'/apps'} className='btn btn-primary'><button>Show All</button></Link>
+                <Link to={'/apps'} className='btn btn-primary'><button className='flex items-center gap-2'>Show All<FaArrowRight /></button></Link>
             </div>
 
         </div>

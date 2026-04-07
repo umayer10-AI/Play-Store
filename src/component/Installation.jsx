@@ -11,7 +11,7 @@ const Installation = () => {
     console.log(i)
 
     return (
-        <div className='max-w-[80%] mx-auto mb-10'>
+        <div className='max-w-[80%] mx-auto'>
             <div className='text-center space-y-3 my-10'>
                 <h2 className='text-4xl font-bold'>Your Installed Apps</h2>
                 <p>Explore All Trending Apps on the Market developed by us</p>
