@@ -8,6 +8,8 @@ import Home from './component/Home.jsx'
 import Apps from './component/Apps.jsx'
 import Installation from './component/Installation.jsx'
 import NotFound from './component/NotFound.jsx'
+import Context from './Context/Context.jsx'
+import CartDeatils from './component/CartDeatils.jsx'
 
 const router = createBrowserRouter([
   {
@@ -15,8 +17,17 @@ const router = createBrowserRouter([
     Component: App,
     children: [
       {index: true, Component: Home},
-      {path: 'apps', Component: Apps},
+      {
+        path: 'apps', 
+        loader: () => fetch("/data.json"),
+        Component: Apps
+      },
       {path: 'install', Component: Installation},
+      {
+        path: 'cartinfo/:id',
+        loader: () => fetch("/data.json"),
+        Component: CartDeatils
+      },
     ]
   },
   {
@@ -26,5 +37,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router}></RouterProvider>
+  <Context>
+    <RouterProvider router={router}></RouterProvider>
+  </Context>
 )

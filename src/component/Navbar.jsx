@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../assets/images/logo.png'
 import { FaGithub } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 
 const Navbar = () => {
     return (
@@ -15,18 +15,18 @@ const Navbar = () => {
                 <ul
                     tabIndex="-1"
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    <li>Home</li>
-                    <li>Apps</li>
-                    <li>Installation</li>
+                    <NavLink to={'/'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Home</NavLink>
+                    <NavLink to={'/apps'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Apps</NavLink>
+                    <NavLink to={'/install'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Installation</NavLink>
                 </ul>
                 </div>
                 <a className="btn btn-ghost text-lg"><img src={img} className='h-10' alt="logo" />HERO.IO</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal gap-8 text-base">
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/apps'}>Apps</Link>
-                    <Link to={'/install'}>Installation</Link>
+                    <NavLink to={'/'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Home</NavLink>
+                    <NavLink to={'/apps'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Apps</NavLink>
+                    <NavLink to={'/install'} className={({isActive}) => isActive ? "btn btn-outline btn-accent" : "btn"}>Installation</NavLink>
                 </ul>
             </div>
             <div className="navbar-end">
