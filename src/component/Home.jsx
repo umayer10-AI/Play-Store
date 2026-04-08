@@ -1,30 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
 import Banner from './Banner/Banner';
 import B2 from './Banner/B2';
-import { Data } from '../Context/Context';
-import axios from "axios"
 import { FaArrowRight, FaDownload, FaRegStar } from 'react-icons/fa';
 import { Link } from 'react-router';
 import { HashLoader } from 'react-spinners';
+import useApp from './Hooks/useApp';
 
 const Home = () => {
 
-    const {cart,setCart} = useContext(Data)
-    const [loading, setL] = useState(true)
-
-    useEffect(() => {
-        const a = async () => {
-            try{
-                setL(true)
-                const b = await axios.get("data.json")
-                setCart(b.data)
-            }
-            finally{
-                setL(false)
-            }
-        }
-        a()
-    },[])
+    const {cart,loading} = useApp()
 
     return (
         <div className='mb-20'>
