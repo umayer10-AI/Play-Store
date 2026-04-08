@@ -5,6 +5,7 @@ import { Data } from '../Context/Context';
 import axios from "axios"
 import { FaArrowRight, FaDownload, FaRegStar } from 'react-icons/fa';
 import { Link } from 'react-router';
+import { HashLoader } from 'react-spinners';
 
 const Home = () => {
 
@@ -25,8 +26,6 @@ const Home = () => {
         a()
     },[])
 
-    if(loading) return 
-
     return (
         <div className='mb-20'>
             <Banner></Banner>
@@ -34,7 +33,7 @@ const Home = () => {
 
             <div className='max-w-[80%] mx-auto mt-20 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
-                    cart.slice(0,6).map((v,i) => (
+                    loading ? <div className='flex justify-center'><HashLoader color='#be2edd'/></div> : cart.slice(0,6).map((v,i) => (
                         <Link to={`/cartinfo/${v.id}`} key={i} className='border rounded-2xl group p-5 space-y-3'>
                             <div className='bg-gray-700 flex justify-center rounded-2xl py-4'>
                                 <img src={v.image} className='h-30 rounded-2xl group-hover:scale-110 transition duration-300' alt="" />

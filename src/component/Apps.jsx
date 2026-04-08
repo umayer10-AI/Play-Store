@@ -1,12 +1,21 @@
 import React from 'react';
 import Appscart from './Appscart';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigation } from 'react-router';
 import { FaDownload, FaRegStar } from 'react-icons/fa';
+import { HashLoader } from 'react-spinners';
 
 const Apps = () => {
 
     const p = useLoaderData();
-    console.log(p)
+    const n = useNavigation();
+
+    if(n.state === "loading"){
+        return (
+            <div className='flex justify-center'>
+                <HashLoader color='#ffffff'/>
+            </div>
+        )
+    }
 
     return (
         <div className='mt-10 mb-20 max-w-[80%] mx-auto'>
